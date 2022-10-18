@@ -44,15 +44,6 @@ public class NetworkChangedReceiver extends BroadcastReceiver {
                                     WebSocketHandler.getDefault().reconnect();
                                 }
                             }
-                            if (!WebSocketHandler.getAllWebSocket().isEmpty()) {
-                                Map<String, WebSocketManager> webSocketManagerMap = WebSocketHandler.getAllWebSocket();
-                                for (String key : webSocketManagerMap.keySet()) {
-                                    WebSocketManager item = webSocketManagerMap.get(key);
-                                    if (item != null && item.getSetting().reconnectWithNetworkChanged()) {
-                                        item.reconnect();
-                                    }
-                                }
-                            }
                         } else {
                             LogUtil.i(TAG, "当前没有可用网络");
                         }
