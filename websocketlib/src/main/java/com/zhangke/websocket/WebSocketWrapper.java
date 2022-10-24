@@ -47,19 +47,21 @@ public class WebSocketWrapper {
     /**
      * 需要关闭连接标志，调用 #disconnect 方法后为 true
      */
-    private boolean needClose = false;
+    private volatile boolean needClose = false;
     /**
      * 是否已销毁
      */
-    private boolean destroyed = false;
+    private volatile boolean destroyed = false;
 
     WebSocketWrapper(WebSocketSetting setting, SocketWrapperListener socketListener) {
         this.mSetting = setting;
         this.mSocketListener = socketListener;
     }
 
-    void connect() {
+    synchronized void connect() {
+        LogUtil.e(TAG, "WebSocket connect start");
         if (destroyed) {
+            LogUtil.e(TAG, "WebSocket connect end by destroyed");
             return;
         }
         needClose = false;
@@ -87,8 +89,10 @@ public class WebSocketWrapper {
                     if (mSetting.getProxy() != null) {
                         mWebSocket.setProxy(mSetting.getProxy());
                     }
+
                     mWebSocket.connect();
                     mWebSocket.setConnectionLostTimeout(mSetting.getConnectionLostTimeout());
+
                     if (needClose) {
                         disConnect();
                     }
@@ -109,6 +113,7 @@ public class WebSocketWrapper {
                 }
             }
         }
+        LogUtil.e(TAG, "WebSocket connect end");
     }
 
     /**
@@ -198,7 +203,7 @@ public class WebSocketWrapper {
     /**
      * 彻底销毁资源
      */
-    void destroy() {
+    synchronized void destroy() {
         destroyed = true;
         disConnect();
         if (connectStatus == 0) {

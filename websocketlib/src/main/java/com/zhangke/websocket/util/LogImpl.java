@@ -9,63 +9,65 @@ import android.util.Log;
  */
 public class LogImpl implements Logable {
 
+    private static final String TAG = "Java-WebSocket";
+
     @Override
     public void v(String tag, String msg) {
-        Log.v(tag, msg);
+        Log.v(TAG, msg);
     }
 
     @Override
     public void v(String tag, String msg, Throwable tr) {
-        Log.v(tag, msg, tr);
+        Log.v(TAG, msg, tr);
     }
 
     @Override
     public void d(String tag, String text) {
-        Log.d(tag, text);
+        Log.d(TAG, text);
     }
 
     @Override
     public void d(String tag, String text, Throwable tr) {
-        Log.d(tag, text, tr);
+        Log.d(TAG, text, tr);
     }
 
     @Override
     public void i(String tag, String text) {
-        Log.i(tag, text);
+        Log.i(TAG, text);
     }
 
     @Override
     public void i(String tag, String text, Throwable tr) {
-        Log.i(tag, text, tr);
+        Log.i(TAG, text, tr);
     }
 
     @Override
     public void e(String tag, String text) {
-        Log.e(tag, text);
+        Log.e(TAG, text);
     }
 
     @Override
     public void e(String tag, String msg, Throwable tr) {
-        Log.e(tag, msg, tr);
+        Log.e(TAG, msg, tr);
     }
 
     @Override
     public void w(String tag, Throwable tr) {
-        Log.w(tag, tr);
+        Log.w(TAG, tr);
     }
 
     @Override
     public void wtf(String tag, String msg) {
-        Log.wtf(tag, msg);
+        Log.wtf(TAG, msg);
     }
 
     @Override
     public void wtf(String tag, Throwable tr) {
-        Log.wtf(tag, tr);
+        Log.wtf(TAG, tr);
     }
 
     @Override
     public void wtf(String tag, String msg, Throwable tr) {
-        Log.wtf(tag, msg, tr);
+        Log.wtf(TAG, msg, tr);
     }
 }

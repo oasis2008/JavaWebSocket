@@ -27,5 +27,5 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api 'org.java-websocket:Java-WebSocket:1.4.0'
+    api 'com.github.oasis2008:Java-WebSocket:V1.0.0'
 }
